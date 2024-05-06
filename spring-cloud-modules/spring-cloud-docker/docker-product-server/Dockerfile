@@ -1,4 +1,4 @@
-FROM maven:3.6.3-adoptopenjdk-11 as appBuilder
+FROM maven:3.8.3-openjdk-17 as appBuilder
 
 # set working directory
 WORKDIR /opt/app
@@ -12,6 +12,6 @@ FROM openjdk:17-jdk-alpine
 
 WORKDIR /opt/app
 
-COPY --from=appBuilder  target/*.jar /opt/app/app.jar
+COPY --from=appBuilder  /opt/app/target/*.jar /opt/app/app.jar
 
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","/opt/app/app.jar"]
